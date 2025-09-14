@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4gn3dms14hvr"]
+[gd_scene load_steps=11 format=3 uid="uid://c4gn3dms14hvr"]
 
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
 [ext_resource type="Environment" uid="uid://bfgc4atxvjvti" path="res://environments/environment_main.tres" id="3_nd71p"]
 [ext_resource type="Shader" uid="uid://bb1084pt8njc" path="res://shaders/water.gdshader" id="3_qjeyg"]
+[ext_resource type="Script" uid="uid://qvaibrlxbmth" path="res://scripts/UnderwaterVolumeControl.cs" id="4_7ddre"]
 
 [sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_qjeyg"]
 
@@ -54,9 +55,13 @@ view_distance = 20
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.03838789, -0.7127248, 0.7003927, 0, 0.7009093, 0.7132505, -0.9992629, -0.027380185, 0.026906433, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Water" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_s36qc")
 surface_material_override/0 = SubResource("ShaderMaterial_wtsjf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_nd71p")
+
+[node name="Underwater Volume Control" type="Node" parent="WorldEnvironment" node_paths=PackedStringArray("_worldEnvironment")]
+script = ExtResource("4_7ddre")
+_worldEnvironment = NodePath("..")
