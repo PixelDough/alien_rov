@@ -53,6 +53,8 @@ visible = false
 threaded_update_enabled = true
 streaming_system = 1
 mesher = SubResource("VoxelMesherTransvoxel_7ddre")
+process_mode = 4
+visible = false
 
 [node name="VoxelLodTerrain3" type="VoxelLodTerrain" parent="."]
 stream = SubResource("VoxelStreamMemory_qjeyg")
@@ -72,7 +74,7 @@ fov = 90.0
 view_distance = 20
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.6669747, 0.5313469, -0.5223173, 0, 0.70102143, 0.7131404, 0.74508035, -0.47564664, 0.46756357, 0, 0, 0)
+transform = Transform3D(0.03838789, -0.7127248, 0.7003927, 0, 0.7009093, 0.7132505, -0.9992629, -0.027380185, 0.026906433, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_s36qc")
