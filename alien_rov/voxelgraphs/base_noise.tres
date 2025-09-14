@@ -1,0 +1,38 @@
+[gd_resource type="VoxelGraphFunction" load_steps=2 format=3 uid="uid://cq74jn7fnrr7p"]
+
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_p720n"]
+
+[resource]
+graph_data = {
+"connections": [[6, 0, 2, 0], [6, 0, 7, 0], [2, 0, 8, 0]],
+"nodes": {
+"2": {
+"b": 2.0,
+"gui_position": Vector2(548.5714, 102.85714),
+"type": "Multiply"
+},
+"6": {
+"auto_connect": true,
+"gui_position": Vector2(342.85715, 102.85714),
+"noise": SubResource("ZN_FastNoiseLite_p720n"),
+"type": "FastNoise2D",
+"x": 0.0,
+"y": 0.0
+},
+"7": {
+"fraction_period": 10.0,
+"gui_position": Vector2(537.1429, -57.142857),
+"max_value": 1.0,
+"min_value": -1.0,
+"mode": 0,
+"type": "SdfPreview"
+},
+"8": {
+"gui_position": Vector2(720, 102.85714),
+"type": "CustomOutput"
+}
+},
+"version": 2
+}
+input_definitions = [["x", "InputX", 0], ["z", "InputZ", 0]]
+output_definitions = [["", "CustomOutput", 0]]

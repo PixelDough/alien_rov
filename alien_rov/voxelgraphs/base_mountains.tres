@@ -1,0 +1,73 @@
+[gd_resource type="VoxelGraphFunction" load_steps=3 format=3 uid="uid://dvtfh1haukshe"]
+
+[sub_resource type="Curve" id="Curve_6bokj"]
+_data = [Vector2(0.07700423, 0.11601645), 0.0, -0.41542715, 0, 1, Vector2(0.26687765, 0.037137866), 0.0, 0.0, 0, 0, Vector2(0.49050638, 0.14049596), 0.0, 0.0, 0, 0, Vector2(0.707806, 0.4149999), 0.0, 0.0, 0, 0, Vector2(0.83016884, 0.60999995), 1.5936214, 0.5281719, 1, 0, Vector2(1, 0.6594), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_6bokj"]
+
+[resource]
+graph_data = {
+"connections": [[16, 0, 13, 0], [15, 0, 14, 0], [14, 0, 16, 0], [9, 0, 11, 0], [8, 0, 10, 0], [7, 0, 9, 0], [1, 0, 15, 0], [10, 0, 1, 0], [6, 0, 8, 0], [11, 0, 1, 1]],
+"nodes": {
+"1": {
+"auto_connect": true,
+"gui_position": Vector2(605.7143, 91.42857),
+"noise": SubResource("ZN_FastNoiseLite_6bokj"),
+"type": "FastNoise2D"
+},
+"10": {
+"b": 215.23,
+"gui_position": Vector2(422.85715, 57.142857),
+"type": "Add"
+},
+"11": {
+"b": 139.21,
+"gui_position": Vector2(422.85715, 160),
+"type": "Add"
+},
+"13": {
+"gui_position": Vector2(1085.7142, 91.42857),
+"type": "CustomOutput"
+},
+"14": {
+"curve": SubResource("Curve_6bokj"),
+"gui_position": Vector2(868.5714, 91.42857),
+"type": "Curve"
+},
+"15": {
+"gui_position": Vector2(765.7143, 91.42857),
+"max0": 1.0,
+"max1": 1.0,
+"min0": -1.0,
+"min1": 0.0,
+"type": "Remap"
+},
+"16": {
+"b": -50.0,
+"gui_position": Vector2(960, 91.42857),
+"type": "Multiply"
+},
+"6": {
+"gui_position": Vector2(205.71428, 57.142857),
+"type": "InputX"
+},
+"7": {
+"gui_position": Vector2(205.71428, 160),
+"type": "InputZ"
+},
+"8": {
+"b": 0.2,
+"gui_position": Vector2(297.14285, 57.142857),
+"type": "Multiply"
+},
+"9": {
+"b": 0.2,
+"gui_position": Vector2(297.14285, 160),
+"type": "Multiply"
+}
+},
+"version": 2
+}
+input_definitions = [["x", "InputX", 0], ["z", "InputZ", 0]]
+output_definitions = [["", "CustomOutput", 0]]

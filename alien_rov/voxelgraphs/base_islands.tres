@@ -1,0 +1,74 @@
+[gd_resource type="VoxelGraphFunction" load_steps=3 format=3 uid="uid://djvju8h2q53rl"]
+
+[sub_resource type="Curve" id="Curve_jy5qd"]
+bake_resolution = 300
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.64662457, 0), 0.0, 0.0, 0, 0, Vector2(0.7710971, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_v3ad1"]
+
+[resource]
+graph_data = {
+"connections": [[11, 0, 8, 0], [10, 0, 9, 0], [9, 0, 11, 0], [7, 0, 1, 0], [6, 0, 3, 0], [5, 0, 7, 0], [4, 0, 10, 0], [3, 0, 4, 0], [2, 0, 6, 0], [1, 0, 4, 1]],
+"nodes": {
+"1": {
+"b": 967.12,
+"gui_position": Vector2(411.42856, 137.14285),
+"type": "Add"
+},
+"10": {
+"gui_position": Vector2(754.2857, 68.57143),
+"max0": 1.0,
+"max1": 1.0,
+"min0": -1.0,
+"min1": 0.0,
+"type": "Remap"
+},
+"11": {
+"b": -60.0,
+"gui_position": Vector2(948.5714, 68.57143),
+"type": "Multiply"
+},
+"2": {
+"gui_position": Vector2(194.28572, 34.285713),
+"type": "InputX"
+},
+"3": {
+"b": 583.12,
+"gui_position": Vector2(411.42856, 34.285713),
+"type": "Add"
+},
+"4": {
+"auto_connect": true,
+"gui_position": Vector2(594.2857, 68.57143),
+"noise": SubResource("ZN_FastNoiseLite_v3ad1"),
+"type": "FastNoise2D"
+},
+"5": {
+"gui_position": Vector2(194.28572, 137.14285),
+"type": "InputZ"
+},
+"6": {
+"b": 0.1,
+"gui_position": Vector2(285.7143, 34.285713),
+"type": "Multiply"
+},
+"7": {
+"b": 0.1,
+"gui_position": Vector2(285.7143, 137.14285),
+"type": "Multiply"
+},
+"8": {
+"gui_position": Vector2(1074.2858, 68.57143),
+"type": "CustomOutput"
+},
+"9": {
+"curve": SubResource("Curve_jy5qd"),
+"gui_position": Vector2(857.1429, 68.57143),
+"type": "Curve"
+}
+},
+"version": 2
+}
+input_definitions = [["x", "InputX", 0], ["z", "InputZ", 0]]
+output_definitions = [["", "CustomOutput", 0]]

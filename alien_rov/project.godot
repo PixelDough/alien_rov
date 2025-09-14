@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="alien-rov"
-run/main_scene="uid://c4gn3dms14hvr"
+run/main_scene="uid://co0d4rbmdu8e6"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
