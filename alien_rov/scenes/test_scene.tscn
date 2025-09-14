@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4gn3dms14hvr"]
+[gd_scene load_steps=13 format=3 uid="uid://c4gn3dms14hvr"]
 
 [ext_resource type="Script" uid="uid://p3qnexpa0kve" path="res://scripts/VoxelTerrainGenerator.cs" id="1_g7g4h"]
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
+[ext_resource type="Environment" uid="uid://bfgc4atxvjvti" path="res://environments/environment_main.tres" id="3_nd71p"]
+[ext_resource type="Shader" uid="uid://bb1084pt8njc" path="res://shaders/water.gdshader" id="3_qjeyg"]
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_nd71p"]
 
@@ -11,21 +13,33 @@
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_3qnke"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g7g4h"]
-
-[sub_resource type="Sky" id="Sky_j8ivh"]
-sky_material = SubResource("ProceduralSkyMaterial_g7g4h")
-
-[sub_resource type="Environment" id="Environment_nd71p"]
-background_mode = 2
-sky = SubResource("Sky_j8ivh")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_h3xc6"]
-flip_faces = true
-size = Vector2(1000, 1000)
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_s36qc"]
 size = Vector2(1000, 1000)
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ddre"]
+noise_type = 2
+seed = 1420
+offset = Vector3(767.3, -235.7, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qjeyg"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_7ddre")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtsjf"]
+render_priority = 0
+shader = ExtResource("3_qjeyg")
+shader_parameter/normal_map_texture = SubResource("NoiseTexture2D_qjeyg")
+shader_parameter/water_color = Color(0.24978572, 0.5099614, 0.82253003, 1)
+shader_parameter/index_of_refraction = 1.333
+shader_parameter/color_deep = Color(0, 0.17254902, 0.6313726, 1)
+shader_parameter/color_shallow = Color(0.28235295, 0.68235296, 0.87058824, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_distance = 10.0
 
 [node name="Node3D" type="Node3D"]
 
@@ -57,14 +71,12 @@ fov = 90.0
 [node name="VoxelViewer" type="VoxelViewer" parent="Camera3D"]
 view_distance = 20
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_nd71p")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.6669747, 0.5313469, -0.5223173, 0, 0.70102143, 0.7131404, 0.74508035, -0.47564664, 0.46756357, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_h3xc6")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_s36qc")
+surface_material_override/0 = SubResource("ShaderMaterial_wtsjf")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_nd71p")

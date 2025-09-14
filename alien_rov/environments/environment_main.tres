@@ -1,0 +1,17 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://bfgc4atxvjvti"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g7g4h"]
+
+[sub_resource type="Sky" id="Sky_j8ivh"]
+sky_material = SubResource("ProceduralSkyMaterial_g7g4h")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_j8ivh")
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.37254903, 0.6862745, 0.88235295, 1)
+fog_sun_scatter = 0.16
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 400.0
