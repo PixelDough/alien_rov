@@ -1,0 +1,91 @@
+[gd_scene load_steps=17 format=3 uid="uid://c4gn3dms14hvr"]
+
+[ext_resource type="Script" uid="uid://p3qnexpa0kve" path="res://scripts/VoxelTerrainGenerator.cs" id="1_g7g4h"]
+
+[sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_g7g4h"]
+
+[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_g7g4h"]
+channel = 0
+height = -20.0
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_g7g4h"]
+
+[sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_j8ivh"]
+
+[sub_resource type="Curve" id="Curve_nd71p"]
+_data = [Vector2(0, 0.1327523), 0.0, 0.0, 0, 0, Vector2(0.32453153, 0.045591712), 0.0, 0.0, 0, 0, Vector2(0.58177173, 0.12621522), 0.0, 0.0, 0, 0, Vector2(0.7061329, 0.3201475), 1.2099413, 1.2099413, 0, 0, Vector2(1, 0.30707347), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ddre"]
+
+[sub_resource type="VoxelGeneratorNoise2D" id="VoxelGeneratorNoise2D_qjeyg"]
+noise = SubResource("FastNoiseLite_7ddre")
+curve = SubResource("Curve_nd71p")
+height_range = 100.0
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_3qnke"]
+
+[sub_resource type="VoxelGeneratorScript" id="VoxelGeneratorScript_wtsjf"]
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_rnaij"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g7g4h"]
+
+[sub_resource type="Sky" id="Sky_j8ivh"]
+sky_material = SubResource("ProceduralSkyMaterial_g7g4h")
+
+[sub_resource type="Environment" id="Environment_nd71p"]
+background_mode = 2
+sky = SubResource("Sky_j8ivh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h3xc6"]
+flip_faces = true
+size = Vector2(1000, 1000)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s36qc"]
+size = Vector2(1000, 1000)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
+threaded_update_enabled = true
+streaming_system = 1
+stream = SubResource("VoxelStreamMemory_g7g4h")
+generator = SubResource("VoxelGeneratorFlat_g7g4h")
+mesher = SubResource("VoxelMesherTransvoxel_g7g4h")
+
+[node name="VoxelLodTerrain2" type="VoxelLodTerrain" parent="."]
+threaded_update_enabled = true
+streaming_system = 1
+stream = SubResource("VoxelStreamMemory_j8ivh")
+generator = SubResource("VoxelGeneratorNoise2D_qjeyg")
+mesher = SubResource("VoxelMesherTransvoxel_3qnke")
+
+[node name="VoxelLodTerrain3" type="VoxelLodTerrain" parent="."]
+generator = SubResource("VoxelGeneratorScript_wtsjf")
+mesher = SubResource("VoxelMesherTransvoxel_rnaij")
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("_terrainNode")]
+script = ExtResource("1_g7g4h")
+_terrainNode = NodePath("../VoxelLodTerrain")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8865268, 0.46267727, 0, -0.46267727, 0.8865268, 0, 2.226, 6.516)
+fov = 90.0
+
+[node name="VoxelViewer" type="VoxelViewer" parent="Camera3D"]
+view_distance = 20
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nd71p")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.6669747, 0.5313469, -0.5223173, 0, 0.70102143, 0.7131404, 0.74508035, -0.47564664, 0.46756357, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_h3xc6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_s36qc")
