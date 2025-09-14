@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4gn3dms14hvr"]
+[gd_scene load_steps=12 format=3 uid="uid://c4gn3dms14hvr"]
 
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
 [ext_resource type="Environment" uid="uid://bfgc4atxvjvti" path="res://environments/environment_main.tres" id="3_nd71p"]
@@ -37,13 +37,14 @@ shader_parameter/color_shallow = Color(0.28235295, 0.68235296, 0.87058824, 1)
 shader_parameter/beers_law = 2.0
 shader_parameter/depth_distance = 10.0
 
+[sub_resource type="BoxMesh" id="BoxMesh_7ddre"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="VoxelLodTerrain3" type="VoxelLodTerrain" parent="."]
 stream = SubResource("VoxelStreamMemory_qjeyg")
 generator = ExtResource("1_j8ivh")
 mesher = SubResource("VoxelMesherTransvoxel_3qnke")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.8865268, 0.46267727, 0, -0.46267727, 0.8865268, 0, 2.226, 6.516)
@@ -65,3 +66,7 @@ environment = ExtResource("3_nd71p")
 [node name="Underwater Volume Control" type="Node" parent="WorldEnvironment" node_paths=PackedStringArray("_worldEnvironment")]
 script = ExtResource("4_7ddre")
 _worldEnvironment = NodePath("..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7042, -10.634965, 26.443846)
+mesh = SubResource("BoxMesh_7ddre")
