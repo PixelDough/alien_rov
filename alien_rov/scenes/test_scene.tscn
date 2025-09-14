@@ -1,13 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4gn3dms14hvr"]
+[gd_scene load_steps=10 format=3 uid="uid://c4gn3dms14hvr"]
 
-[ext_resource type="Script" uid="uid://p3qnexpa0kve" path="res://scripts/VoxelTerrainGenerator.cs" id="1_g7g4h"]
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
 [ext_resource type="Environment" uid="uid://bfgc4atxvjvti" path="res://environments/environment_main.tres" id="3_nd71p"]
 [ext_resource type="Shader" uid="uid://bb1084pt8njc" path="res://shaders/water.gdshader" id="3_qjeyg"]
-
-[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_nd71p"]
-
-[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_7ddre"]
 
 [sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_qjeyg"]
 
@@ -43,28 +38,11 @@ shader_parameter/depth_distance = 10.0
 
 [node name="Node3D" type="Node3D"]
 
-[node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
-threaded_update_enabled = true
-streaming_system = 1
-mesher = SubResource("VoxelMesherTransvoxel_nd71p")
-visible = false
-
-[node name="VoxelLodTerrain2" type="VoxelLodTerrain" parent="."]
-threaded_update_enabled = true
-streaming_system = 1
-mesher = SubResource("VoxelMesherTransvoxel_7ddre")
-process_mode = 4
-visible = false
-
 [node name="VoxelLodTerrain3" type="VoxelLodTerrain" parent="."]
 stream = SubResource("VoxelStreamMemory_qjeyg")
 generator = ExtResource("1_j8ivh")
 mesher = SubResource("VoxelMesherTransvoxel_3qnke")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
-
-[node name="Node" type="Node" parent="." node_paths=PackedStringArray("_terrainNode")]
-script = ExtResource("1_g7g4h")
-_terrainNode = NodePath("../VoxelLodTerrain")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.8865268, 0.46267727, 0, -0.46267727, 0.8865268, 0, 2.226, 6.516)

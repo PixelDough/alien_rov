@@ -12,13 +12,15 @@ public partial class VoxelTerrainGenerator : Node
     {
         base._Ready();
 
-        _voxelTool.GetVoxelTool(_terrainNode);
+        _voxelTool?.GetVoxelTool(_terrainNode);
     }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
 
+        if (_voxelTool is null) return;
+        
         _voxelTool.SetChannel(VoxelTool.ChannelId.Sdf);
         if (!_voxelTool.IsAreaEditable(new Aabb(Vector3.Zero, Vector3.One * 10)))
         {
