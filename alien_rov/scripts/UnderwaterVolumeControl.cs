@@ -22,10 +22,10 @@ public partial class UnderwaterVolumeControl : Node
         base._Process(delta);
 
         Vector3 camPos = GetViewport().GetCamera3D().GlobalPosition;
-        // if (Engine.IsEditorHint() && !OS.HasFeature("editor"))
-        // {
-        //     camPos = EditorInterface.Singleton.GetEditorViewport3D().GetCamera3D().Position;
-        // }
+        if (Engine.IsEditorHint())
+        {
+            camPos = EditorInterface.Singleton.GetEditorViewport3D().GetCamera3D().Position;
+        }
         float belowYPos = Mathf.Min(0f, camPos.Y);
         if (_sunLight is not null && _sunLightGradient is not null && _fogDepthCurve is not null)
             _sunLight.SetColor(_sunLightGradient.Sample(_fogDepthCurve.Sample(belowYPos)));
