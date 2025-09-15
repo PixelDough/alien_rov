@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4gn3dms14hvr"]
+[gd_scene load_steps=15 format=3 uid="uid://c4gn3dms14hvr"]
 
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
 [ext_resource type="Environment" uid="uid://bfgc4atxvjvti" path="res://environments/environment_main.tres" id="3_nd71p"]
@@ -9,6 +9,26 @@
 [sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_qjeyg"]
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_3qnke"]
+
+[sub_resource type="Gradient" id="Gradient_qjeyg"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.32142857, 0.552521, 0.85714287)
+colors = PackedColorArray(0, 0, 0, 1, 0.21451102, 0.21451102, 0.21451102, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3qnke"]
+noise_type = 2
+seed = 1200
+frequency = 0.1
+fractal_octaves = 2
+cellular_return_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wtsjf"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_3qnke")
+color_ramp = SubResource("Gradient_qjeyg")
+seamless = true
+in_3d_space = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s36qc"]
 size = Vector2(1000, 1000)
@@ -54,6 +74,14 @@ fov = 90.0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.03838789, -0.7127248, 0.7003927, 0, 0.7009093, 0.7132505, -0.9992629, -0.027380185, 0.026906433, 0, 0, 0)
 shadow_enabled = true
+
+[node name="Decal" type="Decal" parent="DirectionalLight3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
+size = Vector3(200, 500, 200)
+texture_emission = SubResource("NoiseTexture2D_wtsjf")
+albedo_mix = 0.0
+normal_fade = 0.6
 
 [node name="Water" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_s36qc")
