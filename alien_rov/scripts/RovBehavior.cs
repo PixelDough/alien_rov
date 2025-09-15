@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Parallas;
 
 public partial class RovBehavior : Node
 {
@@ -16,6 +17,27 @@ public partial class RovBehavior : Node
         Quaternion camRotationFlattened = new Quaternion(Vector3.Up, _rigidBody3D.GlobalRotation.Y - Mathf.Pi);
         Vector3 strafeCamRelative = camRotationFlattened * inputMove;
         Vector3 strafeClamped = strafeCamRelative.LimitLength(1);
+
+        float depthPosition = _rigidBody3D.GlobalPosition.Y;
+        if (depthPosition > 0.4)
+        {
+            _rigidBody3D.SetGravityScale(MathUtil.InverseLerp01(0f, 1f, depthPosition) * 3f);
+        }
+        else if (depthPosition > 0.0)
+        {
+            _rigidBody3D.SetGravityScale(-1f);
+        }
+        else
+        {
+            _rigidBody3D.SetGravityScale(0f);
+        }
+
+        float velY = _rigidBody3D.LinearVelocity.Y;
+        float velYDelta = velY * (float)delta;
+        if (depthPosition > 0.0f && depthPosition + velYDelta < 0.0f)
+        {
+            _rigidBody3D.ApplyImpulse(Vector3.Up * Mathf.Abs(velYDelta) * 50f);
+        }
 
         // Strafe Movement 3D
         if (strafeClamped.LengthSquared() > 0.1f)
