@@ -12,6 +12,8 @@ public partial class RovBehavior : Node
     public Vector3 inputMove;
     public Vector2 inputLook;
 
+    private float _customPitch = 0f;
+
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -61,16 +63,23 @@ public partial class RovBehavior : Node
         _rigidBody3D.ApplyTorque(Vector3.Up * (lookAxial.X * yawForce));
 
         // Auto-uprighting
-        Vector3 targetUpAngle = Vector3.Up;
-        float pitchAngleMax = 30f;
-        targetUpAngle = new Quaternion(_rigidBody3D.Transform.Basis.X, lookAxial.Y * pitchAngleMax) * Vector3.Up;
+        float pitchAngleMax = 60f;
+        if (Mathf.Abs(lookAxial.Y) < 0.1f)
+        {
+            if (Mathf.Abs(_customPitch) < 5f)
+                _customPitch = 0f;
+        }
+        else
+        {
+            _customPitch = MathUtil.ExpDecay(_customPitch, lookAxial.Y * pitchAngleMax, 2f, (float)delta);
+        }
+        Vector3 targetUpAngle = new Quaternion(_rigidBody3D.Transform.Basis.X, Mathf.DegToRad(_customPitch)) * Vector3.Up;
 
         float springStrength = 5;
         float damperStrength = 2;
         var springTorque = springStrength * _rigidBody3D.Transform.Basis.Y.Cross(targetUpAngle);
         var dampTorque = damperStrength * -_rigidBody3D.AngularVelocity;
-        float uprightingModifier = 1f;
-        if (Mathf.Abs(inputLook.Y) > 0.1) uprightingModifier = 0.5f;
+        float uprightingModifier = 1.5f;
         _rigidBody3D.ApplyTorque(springTorque * uprightingModifier + dampTorque);
     }
 }
