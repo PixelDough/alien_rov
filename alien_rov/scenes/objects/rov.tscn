@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cft8pea2mof2f"]
+
+[ext_resource type="Script" uid="uid://wg7mgo0f51pq" path="res://scripts/RovBehavior.cs" id="1_orfdf"]
+[ext_resource type="Script" uid="uid://c35fjywji0nrn" path="res://scripts/PlayerController.cs" id="2_ds2eu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rynrb"]
+size = Vector3(1, 1, 1.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rynrb"]
+size = Vector3(1, 1, 1.5)
+
+[node name="Rov" type="RigidBody3D"]
+gravity_scale = 0.0
+linear_damp = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_rynrb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_rynrb")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, 0, 0, 0.6385255)
+current = true
+fov = 90.0
+near = 0.02
+
+[node name="RovBehavior" type="Node" parent="." node_paths=PackedStringArray("_rigidBody3D", "_camera3D")]
+script = ExtResource("1_orfdf")
+_rigidBody3D = NodePath("..")
+_camera3D = NodePath("../Camera3D")
+
+[node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("_rovBehavior")]
+script = ExtResource("2_ds2eu")
+_rovBehavior = NodePath("../RovBehavior")
