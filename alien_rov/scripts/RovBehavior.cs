@@ -13,25 +13,22 @@ public partial class RovBehavior : Node
     {
         base._PhysicsProcess(delta);
 
-        Vector3 strafeCamRelative = _camera3D.Quaternion * inputMove;
+        Quaternion camRotationFlattened = new Quaternion(Vector3.Up, _rigidBody3D.GlobalRotation.Y - Mathf.Pi);
+        Vector3 strafeCamRelative = camRotationFlattened * inputMove;
         Vector3 strafeClamped = strafeCamRelative.LimitLength(1);
 
         // Strafe Movement 3D
         if (strafeClamped.LengthSquared() > 0.1f)
         {
             float engineForce = 8f;
-            _rigidBody3D.ApplyForce(_rigidBody3D.Quaternion * strafeClamped * engineForce, -_rigidBody3D.Transform.Basis.X);
-            _rigidBody3D.ApplyForce(_rigidBody3D.Quaternion * strafeClamped * engineForce, _rigidBody3D.Transform.Basis.X);
+            _rigidBody3D.ApplyForce(strafeClamped * engineForce, -_rigidBody3D.Transform.Basis.X);
+            _rigidBody3D.ApplyForce(strafeClamped * engineForce, _rigidBody3D.Transform.Basis.X);
         }
-
-        Vector3 targetUpAngle = Vector3.Up;
 
         // Look Angle
         Vector2 lookAxial = new Vector2();
         if (Mathf.Abs(inputLook.X) > 0.1) lookAxial.X = -inputLook.X;
         if (Mathf.Abs(inputLook.Y) > 0.1) lookAxial.Y = inputLook.Y;
-        float pitchAngleMax = 30f;
-        targetUpAngle = new Quaternion(_rigidBody3D.Transform.Basis.X, lookAxial.Y * pitchAngleMax) * Vector3.Up;
 
         float twistForce = 0.7f;
         float yawForce = 3f;
@@ -39,10 +36,16 @@ public partial class RovBehavior : Node
         _rigidBody3D.ApplyTorque(Vector3.Up * (lookAxial.X * yawForce));
 
         // Auto-uprighting
+        Vector3 targetUpAngle = Vector3.Up;
+        float pitchAngleMax = 30f;
+        targetUpAngle = new Quaternion(_rigidBody3D.Transform.Basis.X, lookAxial.Y * pitchAngleMax) * Vector3.Up;
+
         float springStrength = 5;
         float damperStrength = 2;
         var springTorque = springStrength * _rigidBody3D.Transform.Basis.Y.Cross(targetUpAngle);
         var dampTorque = damperStrength * -_rigidBody3D.AngularVelocity;
-        _rigidBody3D.ApplyTorque(springTorque * 0.5f + dampTorque);
+        float uprightingModifier = 1f;
+        if (Mathf.Abs(inputLook.Y) > 0.1) uprightingModifier = 0.5f;
+        _rigidBody3D.ApplyTorque(springTorque * uprightingModifier + dampTorque);
     }
 }
