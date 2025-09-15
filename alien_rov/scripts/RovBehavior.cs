@@ -7,6 +7,8 @@ public partial class RovBehavior : Node
     [Export] private RigidBody3D _rigidBody3D;
     [Export] private Camera3D _camera3D;
 
+    private const float OutOfWaterThreshold = 0.4f;
+
     public Vector3 inputMove;
     public Vector2 inputLook;
 
@@ -19,7 +21,7 @@ public partial class RovBehavior : Node
         Vector3 strafeClamped = strafeCamRelative.LimitLength(1);
 
         float depthPosition = _rigidBody3D.GlobalPosition.Y;
-        if (depthPosition > 0.4)
+        if (depthPosition > OutOfWaterThreshold)
         {
             _rigidBody3D.SetGravityScale(MathUtil.InverseLerp01(0f, 1f, depthPosition) * 3f);
         }
@@ -40,7 +42,7 @@ public partial class RovBehavior : Node
         }
 
         // Strafe Movement 3D
-        if (strafeClamped.LengthSquared() > 0.1f)
+        if (strafeClamped.LengthSquared() > 0.1f && depthPosition < OutOfWaterThreshold + 0.1f)
         {
             float engineForce = 8f;
             _rigidBody3D.ApplyForce(strafeClamped * engineForce, -_rigidBody3D.Transform.Basis.X);
@@ -51,6 +53,7 @@ public partial class RovBehavior : Node
         Vector2 lookAxial = new Vector2();
         if (Mathf.Abs(inputLook.X) > 0.1) lookAxial.X = -inputLook.X;
         if (Mathf.Abs(inputLook.Y) > 0.1) lookAxial.Y = inputLook.Y;
+        if (depthPosition > OutOfWaterThreshold + 0.1f) lookAxial = Vector2.Zero;
 
         float twistForce = 0.7f;
         float yawForce = 3f;
