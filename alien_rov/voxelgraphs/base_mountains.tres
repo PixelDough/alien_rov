@@ -3,8 +3,8 @@
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_j3dor"]
 
 [sub_resource type="Curve" id="Curve_6bokj"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.30734766, 0.9770378), 0.0, 0.0, 0, 0, Vector2(0.58512545, 0), 0.024328202, 0.5281719, 0, 0]
-point_count = 3
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.30734766, 0.9770378), 0.0, 0.0, 0, 0, Vector2(0.438172, 0.5579734), 0.0, 0.0, 0, 0, Vector2(0.53853047, 0.5246842), 0.0, 0.0, 0, 0, Vector2(0.6424731, 0), 0.024328202, 0.5281719, 0, 0]
+point_count = 5
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_6bokj"]
 
@@ -96,7 +96,7 @@ graph_data = {
 "max0": 1.0,
 "max1": -200.0,
 "min0": -1.0,
-"min1": -100.0,
+"min1": 0.0,
 "type": "Remap"
 },
 "6": {

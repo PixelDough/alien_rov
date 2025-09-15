@@ -35,12 +35,14 @@ public partial class UnderwaterVolumeControl : Node
             _worldEnvironment.Environment.BackgroundEnergyMultiplier = 1.0f;
             _worldEnvironment.Environment.FogDepthEnd = 400;
             _worldEnvironment.Environment.VolumetricFogDensity = 0f;
+            _worldEnvironment.Environment.FogSkyAffect = 0f;
         }
         else
         {
             _worldEnvironment.Environment.BackgroundEnergyMultiplier = _ambientLightCurve?.Sample(belowYPos) ?? 1.0f;
             _worldEnvironment.Environment.FogDepthEnd = 200;
             _worldEnvironment.Environment.VolumetricFogDensity = 0.035f;
+            _worldEnvironment.Environment.FogSkyAffect = 1f;
             if (_fogDepthCurve is not null && _fogDepthGradient is not null)
             {
                 Color fogColor = _fogDepthGradient.Sample(_fogDepthCurve.Sample(belowYPos));

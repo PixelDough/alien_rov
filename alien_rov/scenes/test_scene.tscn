@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://c4gn3dms14hvr"]
+[gd_scene load_steps=20 format=3 uid="uid://c4gn3dms14hvr"]
 
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
+[ext_resource type="Script" uid="uid://b037aq242tmog" path="res://scripts/FollowCameraBehavior.cs" id="3_3qnke"]
 [ext_resource type="Environment" uid="uid://bfgc4atxvjvti" path="res://environments/environment_main.tres" id="3_nd71p"]
 [ext_resource type="Shader" uid="uid://bb1084pt8njc" path="res://shaders/water.gdshader" id="3_qjeyg"]
 [ext_resource type="Script" uid="uid://qvaibrlxbmth" path="res://scripts/UnderwaterVolumeControl.cs" id="4_7ddre"]
@@ -55,25 +56,27 @@ shader_parameter/water_color = Color(0.24978572, 0.5099614, 0.82253003, 1)
 shader_parameter/index_of_refraction = 1.333
 shader_parameter/color_deep = Color(0, 0.17254902, 0.6313726, 1)
 shader_parameter/color_shallow = Color(0.28235295, 0.68235296, 0.87058824, 1)
-shader_parameter/beers_law = 2.0
-shader_parameter/depth_distance = 10.0
+shader_parameter/beers_law = 7.0
+shader_parameter/depth_distance = 50.0
 
 [sub_resource type="Gradient" id="Gradient_3qnke"]
-offsets = PackedFloat32Array(0, 0.49624062, 0.94736844, 1)
+offsets = PackedFloat32Array(0, 0.8982387, 0.94736844, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.08627451, 0, 1, 1, 0.1764706, 0.5921569, 1, 1, 0.29641548, 0.80179924, 0.9999998, 1)
 
 [sub_resource type="Curve" id="Curve_wtsjf"]
 _limits = [0.0, 1.0, -200.0, 2.2351741e-10]
-_data = [Vector2(-200, 0), 0.0, 0.0, 0, 0, Vector2(0, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(-200, 0), 0.0, 0.0, 0, 0, Vector2(0, 1), 0.007604388, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_wtsjf"]
-offsets = PackedFloat32Array(0.12781955, 0.5394737, 0.9830827, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0.31764707, 1, 1, 0.7411765, 0.9254902, 0.9254902, 1, 1, 1, 1, 1)
+interpolation_mode = 2
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0.14285715, 0.7592955, 0.999, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.00036098063, 0.23602283, 0.76796085, 1, 0.7411765, 0.9254902, 0.9254902, 1, 1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_qjeyg"]
-_limits = [0.0, 2.0, -200.0, 0.0]
-_data = [Vector2(-200, 0), 0.0, 0.0, 0, 0, Vector2(0, 2), 0.0, 0.0, 0, 0]
+_limits = [0.0, 1.0, -200.0, 0.0]
+_data = [Vector2(-116.66667, 0), 0.0, 0.0, 0, 0, Vector2(0, 1), 0.011353772, 0.0, 0, 0]
 point_count = 2
 
 [node name="Node3D" type="Node3D"]
@@ -91,7 +94,10 @@ fov = 90.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.03838789, -0.7127248, 0.7003927, 0, 0.7009093, 0.7132505, -0.9992629, -0.027380185, 0.026906433, 0, 0, 0)
+light_color = Color(-0.1379394, -0.105650485, 0.3435515, 1)
+light_volumetric_fog_energy = 3.0
 shadow_enabled = true
+directional_shadow_blend_splits = true
 
 [node name="Decal" type="Decal" parent="DirectionalLight3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -104,6 +110,10 @@ normal_fade = 0.6
 [node name="Water" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_s36qc")
 surface_material_override/0 = SubResource("ShaderMaterial_wtsjf")
+
+[node name="FollowCameraBehavior" type="Node" parent="Water" node_paths=PackedStringArray("targetNode")]
+script = ExtResource("3_3qnke")
+targetNode = NodePath("..")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_nd71p")
@@ -122,3 +132,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7042, -10.634965, 26.4438
 
 [node name="VoxelViewer" type="VoxelViewer" parent="Rov"]
 view_distance = 20
+enabled_in_editor = true
