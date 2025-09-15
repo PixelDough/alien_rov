@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c4gn3dms14hvr"]
+[gd_scene load_steps=19 format=3 uid="uid://c4gn3dms14hvr"]
 
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
 [ext_resource type="Environment" uid="uid://bfgc4atxvjvti" path="res://environments/environment_main.tres" id="3_nd71p"]
@@ -58,6 +58,24 @@ shader_parameter/color_shallow = Color(0.28235295, 0.68235296, 0.87058824, 1)
 shader_parameter/beers_law = 2.0
 shader_parameter/depth_distance = 10.0
 
+[sub_resource type="Gradient" id="Gradient_3qnke"]
+offsets = PackedFloat32Array(0, 0.49624062, 0.94736844, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.08627451, 0, 1, 1, 0.1764706, 0.5921569, 1, 1, 0.29641548, 0.80179924, 0.9999998, 1)
+
+[sub_resource type="Curve" id="Curve_wtsjf"]
+_limits = [0.0, 1.0, -200.0, 2.2351741e-10]
+_data = [Vector2(-200, 0), 0.0, 0.0, 0, 0, Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_wtsjf"]
+offsets = PackedFloat32Array(0.12781955, 0.5394737, 0.9830827, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.31764707, 1, 1, 0.7411765, 0.9254902, 0.9254902, 1, 1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_qjeyg"]
+_limits = [0.0, 2.0, -200.0, 0.0]
+_data = [Vector2(-200, 0), 0.0, 0.0, 0, 0, Vector2(0, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Node3D" type="Node3D"]
 
 [node name="VoxelLodTerrain3" type="VoxelLodTerrain" parent="."]
@@ -90,9 +108,14 @@ surface_material_override/0 = SubResource("ShaderMaterial_wtsjf")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_nd71p")
 
-[node name="Underwater Volume Control" type="Node" parent="WorldEnvironment" node_paths=PackedStringArray("_worldEnvironment")]
+[node name="Underwater Volume Control" type="Node" parent="WorldEnvironment" node_paths=PackedStringArray("_worldEnvironment", "_sunLight")]
 script = ExtResource("4_7ddre")
 _worldEnvironment = NodePath("..")
+_sunLight = NodePath("../../DirectionalLight3D")
+_fogDepthGradient = SubResource("Gradient_3qnke")
+_fogDepthCurve = SubResource("Curve_wtsjf")
+_sunLightGradient = SubResource("Gradient_wtsjf")
+_ambientLightCurve = SubResource("Curve_qjeyg")
 
 [node name="Rov" parent="." instance=ExtResource("5_qjeyg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7042, -10.634965, 26.443846)

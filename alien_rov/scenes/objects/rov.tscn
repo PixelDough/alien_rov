@@ -33,3 +33,11 @@ _camera3D = NodePath("../Camera3D")
 [node name="PlayerController" type="Node" parent="." node_paths=PackedStringArray("_rovBehavior")]
 script = ExtResource("2_ds2eu")
 _rovBehavior = NodePath("../RovBehavior")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, 0, 0, 0.2739349)
+light_color = Color(0.60784316, 1, 1, 1)
+light_energy = 16.0
+shadow_enabled = true
+spot_range = 50.0
+spot_angle_attenuation = 0.5358868
