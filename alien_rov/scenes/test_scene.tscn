@@ -60,19 +60,19 @@ shader_parameter/beers_law = 7.0
 shader_parameter/depth_distance = 50.0
 
 [sub_resource type="Gradient" id="Gradient_3qnke"]
-offsets = PackedFloat32Array(0, 0.8982387, 0.94736844, 1)
+offsets = PackedFloat32Array(0, 0.37964776, 0.667319, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.08627451, 0, 1, 1, 0.1764706, 0.5921569, 1, 1, 0.29641548, 0.80179924, 0.9999998, 1)
 
 [sub_resource type="Curve" id="Curve_wtsjf"]
 _limits = [0.0, 1.0, -200.0, 2.2351741e-10]
-_data = [Vector2(-200, 0), 0.0, 0.0, 0, 0, Vector2(0, 1), 0.007604388, 0.0, 0, 0]
+_data = [Vector2(-200, 0), 0.0, 0.0, 0, 0, Vector2(2.2351741e-10, 1), 0.00016778798, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_wtsjf"]
 interpolation_mode = 2
 interpolation_color_space = 1
-offsets = PackedFloat32Array(0.14285715, 0.7592955, 0.999, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.00036098063, 0.23602283, 0.76796085, 1, 0.7411765, 0.9254902, 0.9254902, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0.14285715, 0.43052837, 0.6927593, 0.999, 1)
+colors = PackedColorArray(0, 0, 0, 1, -0.2439973, 0.12004268, 0.74143606, 1, 0.2308585, 0.4750635, 1, 1, 0.7411765, 0.9254902, 0.9254902, 1, 1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_qjeyg"]
 _limits = [0.0, 1.0, -200.0, 0.0]

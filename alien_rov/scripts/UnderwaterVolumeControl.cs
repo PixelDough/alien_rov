@@ -42,8 +42,8 @@ public partial class UnderwaterVolumeControl : Node
         else
         {
             _worldEnvironment.Environment.BackgroundEnergyMultiplier = _ambientLightCurve?.Sample(belowYPos) ?? 1.0f;
-            _worldEnvironment.Environment.FogDepthEnd = 200;
-            _worldEnvironment.Environment.VolumetricFogDensity = 0.035f;
+            _worldEnvironment.Environment.FogDepthEnd = 300;
+            _worldEnvironment.Environment.VolumetricFogDensity = 0.015f;
             _worldEnvironment.Environment.FogSkyAffect = 1f;
             if (_fogDepthCurve is not null && _fogDepthGradient is not null)
             {
