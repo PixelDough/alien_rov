@@ -1,0 +1,148 @@
+[gd_resource type="VoxelGraphFunction" load_steps=4 format=3 uid="uid://wfwudfn0grr4"]
+
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_j6xug"]
+seed = 1420
+period = 137.2001
+
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_7mm3m"]
+seed = 5450
+period = 64.0001
+fractal_octaves = 2
+fractal_gain = 0.19
+
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_haqvq"]
+seed = 1460
+period = 64.0001
+fractal_octaves = 1
+fractal_gain = 0.19
+cellular_distance_function = 0
+
+[resource]
+graph_data = {
+"connections": [[54, 0, 10, 0], [53, 0, 46, 0], [52, 0, 53, 1], [51, 0, 52, 0], [48, 0, 53, 0], [46, 0, 50, 0], [45, 0, 54, 0], [44, 0, 43, 0], [43, 0, 41, 0], [41, 0, 39, 0], [39, 0, 26, 1], [50, 0, 45, 1], [27, 0, 12, 0], [26, 0, 45, 0], [47, 0, 48, 0], [37, 0, 44, 1], [14, 0, 15, 0], [12, 0, 26, 0]],
+"nodes": {
+"10": {
+"auto_connect": true,
+"gui_position": Vector2(1245.7142, 320),
+"type": "OutputSDF"
+},
+"12": {
+"b": 40.0,
+"gui_position": Vector2(662.8571, 354.2857),
+"type": "Multiply"
+},
+"13": {
+"gui_position": Vector2(502.85715, 171.42857),
+"type": "InputY"
+},
+"14": {
+"gui_position": Vector2(605.7143, 171.42857),
+"p": 1.0,
+"type": "Pow",
+"x": 1.0
+},
+"15": {
+"b": 0.25,
+"gui_position": Vector2(792, 163.42857),
+"type": "Multiply"
+},
+"24": {
+"a": 0.0,
+"b": 1.0,
+"gui_position": Vector2(1348.5714, 434.2857),
+"type": "Multiply"
+},
+"26": {
+"gui_position": Vector2(880.6306, 374.268),
+"type": "Add"
+},
+"27": {
+"auto_connect": true,
+"gui_position": Vector2(491.42856, 354.2857),
+"noise": SubResource("ZN_FastNoiseLite_7mm3m"),
+"type": "FastNoise3D",
+"x": 0.0,
+"y": 0.0,
+"z": 0.0
+},
+"37": {
+"auto_connect": true,
+"gui_position": Vector2(114.28571, 525.7143),
+"noise": SubResource("ZN_FastNoiseLite_haqvq"),
+"type": "FastNoise3D",
+"x": 0.0,
+"y": 0.0,
+"z": 0.0
+},
+"39": {
+"b": 10.0,
+"gui_position": Vector2(651.4286, 514.2857),
+"type": "Multiply"
+},
+"41": {
+"gui_position": Vector2(560, 514.2857),
+"max": 1.0,
+"min": 0.0,
+"type": "ClampC"
+},
+"43": {
+"gui_position": Vector2(445.7143, 514.2857),
+"p": 2.0,
+"type": "Pow"
+},
+"44": {
+"a": 1.0,
+"gui_position": Vector2(308.57144, 525.7143),
+"type": "Subtract"
+},
+"45": {
+"gui_position": Vector2(1040, 537.1429),
+"type": "Add"
+},
+"46": {
+"gui_position": Vector2(673.23505, 689.2644),
+"max": 1.0,
+"min": 0.0,
+"type": "ClampC"
+},
+"47": {
+"gui_position": Vector2(240, 685.7143),
+"type": "InputY"
+},
+"48": {
+"b": 200.0,
+"gui_position": Vector2(377.14285, 685.7143),
+"type": "Add"
+},
+"50": {
+"b": 40.0,
+"gui_position": Vector2(834.2857, 697.1429),
+"type": "Multiply"
+},
+"51": {
+"auto_connect": true,
+"gui_position": Vector2(137.14285, 788.5714),
+"noise": SubResource("ZN_FastNoiseLite_j6xug"),
+"type": "FastNoise2D",
+"x": 0.0,
+"y": 0.0
+},
+"52": {
+"b": 100.0,
+"gui_position": Vector2(342.85715, 822.8571),
+"type": "Multiply"
+},
+"53": {
+"gui_position": Vector2(537.1429, 708.5714),
+"type": "Add"
+},
+"54": {
+"b": 1.0,
+"gui_position": Vector2(1131.4286, 491.42856),
+"type": "Multiply"
+}
+},
+"version": 2
+}
+input_definitions = [["x", "InputX", 0], ["y", "InputY", 0], ["z", "InputZ", 0]]
+output_definitions = [["sdf", "OutputSDF", 0]]
