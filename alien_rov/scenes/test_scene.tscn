@@ -94,7 +94,6 @@ fov = 90.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.03838789, -0.7127248, 0.7003927, 0, 0.7009093, 0.7132505, -0.9992629, -0.027380185, 0.026906433, 0, 0, 0)
-light_color = Color(-0.1379394, -0.105650485, 0.3435515, 1)
 light_volumetric_fog_energy = 3.0
 shadow_enabled = true
 directional_shadow_blend_splits = true

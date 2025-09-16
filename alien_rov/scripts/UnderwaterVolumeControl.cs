@@ -10,6 +10,7 @@ public partial class UnderwaterVolumeControl : Node
     [Export] private Curve _fogDepthCurve;
     [Export] private Gradient _sunLightGradient;
     [Export] private Curve _ambientLightCurve;
+    [Export] private bool _testInEditor;
 
     public override void _Ready()
     {
@@ -24,6 +25,7 @@ public partial class UnderwaterVolumeControl : Node
         Vector3 camPos = GetViewport().GetCamera3D().GlobalPosition;
         if (Engine.IsEditorHint())
         {
+            if (!_testInEditor) return;
             camPos = EditorInterface.Singleton.GetEditorViewport3D().GetCamera3D().Position;
         }
         float belowYPos = Mathf.Min(0f, camPos.Y);
