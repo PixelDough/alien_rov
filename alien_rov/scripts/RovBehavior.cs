@@ -12,8 +12,6 @@ public partial class RovBehavior : Node
     public Vector3 inputMove;
     public Vector2 inputLook;
 
-    private float _customPitch = 0f;
-
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -64,16 +62,7 @@ public partial class RovBehavior : Node
 
         // Auto-uprighting
         float pitchAngleMax = 60f;
-        if (Mathf.Abs(lookAxial.Y) < 0.1f)
-        {
-            if (Mathf.Abs(_customPitch) < 5f)
-                _customPitch = 0f;
-        }
-        else
-        {
-            _customPitch = MathUtil.ExpDecay(_customPitch, lookAxial.Y * pitchAngleMax, 2f, (float)delta);
-        }
-        Vector3 targetUpAngle = new Quaternion(_rigidBody3D.Transform.Basis.X, Mathf.DegToRad(_customPitch)) * Vector3.Up;
+        Vector3 targetUpAngle = new Quaternion(_rigidBody3D.Transform.Basis.X, Mathf.DegToRad(lookAxial.Y * pitchAngleMax)) * Vector3.Up;
 
         float springStrength = 5;
         float damperStrength = 2;
