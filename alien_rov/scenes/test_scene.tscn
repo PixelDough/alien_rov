@@ -137,7 +137,6 @@ albedo_mix = 0.0
 normal_fade = 0.6
 
 [node name="Water" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("PlaneMesh_s36qc")
 surface_material_override/0 = SubResource("ShaderMaterial_wtsjf")
 
