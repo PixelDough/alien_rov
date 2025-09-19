@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://njnwynno7rhl"]
+
+[ext_resource type="ArrayMesh" uid="uid://dohifr87idp8v" path="res://models/palm_tree/meshes/glb_palmtrees_tree_1.res" id="1_rmki7"]
+
+[node name="palmtree_1" type="MeshInstance3D"]
+mesh = ExtResource("1_rmki7")

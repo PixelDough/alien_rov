@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://guha8bcgoh0n"]
+
+[ext_resource type="Shader" uid="uid://b10moqeo8hydb" path="res://shaders/base_gradient.gdshader" id="1_h8yss"]
+[ext_resource type="Texture2D" uid="uid://cmjrp5n5peuxl" path="res://textures/gradients/tex_gradient_beach.png" id="2_umpg8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_h8yss")
+shader_parameter/gradient_texture = ExtResource("2_umpg8")

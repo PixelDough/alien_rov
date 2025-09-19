@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://c4gn3dms14hvr"]
+[gd_scene load_steps=29 format=3 uid="uid://c4gn3dms14hvr"]
 
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
 [ext_resource type="PackedScene" uid="uid://crm0r15na8dr6" path="res://scenes/objects/plant_test.tscn" id="2_wtsjf"]
 [ext_resource type="Script" uid="uid://b037aq242tmog" path="res://scripts/FollowCameraBehavior.cs" id="3_3qnke"]
 [ext_resource type="Environment" uid="uid://bfgc4atxvjvti" path="res://environments/environment_main.tres" id="3_nd71p"]
 [ext_resource type="Shader" uid="uid://bb1084pt8njc" path="res://shaders/water.gdshader" id="3_qjeyg"]
+[ext_resource type="PackedScene" uid="uid://njnwynno7rhl" path="res://scenes/objects/palm_trees/palmtree_1.tscn" id="3_rnaij"]
 [ext_resource type="Script" uid="uid://qvaibrlxbmth" path="res://scripts/UnderwaterVolumeControl.cs" id="4_7ddre"]
 [ext_resource type="PackedScene" uid="uid://cft8pea2mof2f" path="res://scenes/objects/rov.tscn" id="5_qjeyg"]
 
@@ -19,6 +20,8 @@ frequency = 0.0352
 emit_mode = 1
 density = 0.15
 max_slope_degrees = 45.0
+min_height = -1000.0
+max_height = -2.0
 min_scale = 0.8
 max_scale = 1.2
 vertical_alignment = 0.0
@@ -35,8 +38,23 @@ lod_index = 1
 generator = SubResource("VoxelInstanceGenerator_rnaij")
 resource_name = "plant_test_multimesh"
 
+[sub_resource type="VoxelInstanceGenerator" id="VoxelInstanceGenerator_h3xc6"]
+density = 0.01
+max_slope_degrees = 35.0
+min_height = 0.2
+max_height = 100.0
+max_scale = 4.0
+vertical_alignment = 0.6
+
+[sub_resource type="VoxelInstanceLibrarySceneItem" id="VoxelInstanceLibrarySceneItem_s36qc"]
+scene = ExtResource("3_rnaij")
+name = "palm_tree_1"
+lod_index = 2
+generator = SubResource("VoxelInstanceGenerator_h3xc6")
+resource_name = "palm_tree_1"
+
 [sub_resource type="VoxelInstanceLibrary" id="VoxelInstanceLibrary_s36qc"]
-_data = [0, 2, SubResource("VoxelInstanceLibraryMultiMeshItem_s36qc")]
+_data = [0, 2, SubResource("VoxelInstanceLibraryMultiMeshItem_s36qc"), 3, SubResource("VoxelInstanceLibrarySceneItem_s36qc")]
 
 [sub_resource type="Gradient" id="Gradient_qjeyg"]
 interpolation_mode = 2

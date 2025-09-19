@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl2vhy2ybos5w"]
+
+[ext_resource type="PackedScene" uid="uid://njnwynno7rhl" path="res://scenes/objects/palm_trees/palmtree_1.tscn" id="1_4l77j"]
+[ext_resource type="ArrayMesh" uid="uid://dm3uvrsxu8660" path="res://models/palm_tree/meshes/glb_palmtrees_tree_3.res" id="2_fogv0"]
+
+[node name="palmtree_3" instance=ExtResource("1_4l77j")]
+mesh = ExtResource("2_fogv0")
