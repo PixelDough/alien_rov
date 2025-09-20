@@ -47,9 +47,9 @@ spot_angle_attenuation = 0.5358868
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
 transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, 0, 0, 0.2739349)
-light_energy = 1.25
+light_energy = 2.5
 shadow_enabled = true
 shadow_bias = 0.1
 spot_range = 200.0
-spot_attenuation = 0.1
+spot_attenuation = 0.4
 spot_angle_attenuation = 0.5358868

@@ -38,7 +38,7 @@ vec3 light_absorption(
 	if (light_is_directional) {
 		light_attenuation = mix(light_attenuation, 1.0, 0.5);
 	}
-	float absorption_amount = 0.0025 + (directional_light_influence * 0.003);
+	float absorption_amount = 0.001 + (directional_light_influence * 0.0045);
 	light_attenuation *= rgb2hsl(light_color / PI).z;
 	light_attenuation *= 
 		mix(1.0, 1.0 + clamp(world_pos.y * absorption_amount, -1, 0), directional_light_influence);

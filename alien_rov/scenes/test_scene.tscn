@@ -13,7 +13,7 @@
 [sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_qjeyg"]
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_3qnke"]
-texturing_mode = 1
+texturing_mode = 2
 
 [sub_resource type="VoxelFormat" id="VoxelFormat_h3xc6"]
 _data = [0, 1, 1, 0, 0, 1, 0, 0, 0]
