@@ -1,5 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://c4gn3dms14hvr"]
 
+[ext_resource type="Material" uid="uid://bckrn5k82av0v" path="res://materials/base_terrain.tres" id="1_h3xc6"]
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
 [ext_resource type="PackedScene" uid="uid://crm0r15na8dr6" path="res://scenes/objects/plant_test.tscn" id="2_wtsjf"]
 [ext_resource type="Script" uid="uid://b037aq242tmog" path="res://scripts/FollowCameraBehavior.cs" id="3_3qnke"]
@@ -105,19 +106,13 @@ shader_parameter/beers_law = 7.0
 shader_parameter/depth_distance = 50.0
 
 [sub_resource type="Gradient" id="Gradient_3qnke"]
-offsets = PackedFloat32Array(0, 0.37964776, 0.667319, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.08627451, 0, 1, 1, 0.1764706, 0.5921569, 1, 1, 0.29641548, 0.80179924, 0.9999998, 1)
+offsets = PackedFloat32Array(0, 0.5824176, 0.78846157, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.08627451, 0, 1, 1, 0.1764706, 0.5921569, 1, 1, 0.38431373, 0.81960785, 1, 1)
 
 [sub_resource type="Curve" id="Curve_wtsjf"]
 _limits = [0.0, 1.0, -200.0, 2.2351741e-10]
 _data = [Vector2(-200, 0), 0.0, 0.0, 0, 0, Vector2(2.2351741e-10, 1), 0.00016778798, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_wtsjf"]
-interpolation_mode = 2
-interpolation_color_space = 1
-offsets = PackedFloat32Array(0.14285715, 0.43052837, 0.6927593, 0.999, 1)
-colors = PackedColorArray(0, 0, 0, 1, -0.2439973, 0.12004268, 0.74143606, 1, 0.2308585, 0.4750635, 1, 1, 0.7411765, 0.9254902, 0.9254902, 1, 1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_qjeyg"]
 _limits = [0.0, 1.0, -200.0, 0.0]
@@ -127,6 +122,7 @@ point_count = 2
 [node name="Node3D" type="Node3D"]
 
 [node name="VoxelLodTerrain3" type="VoxelLodTerrain" parent="."]
+material = ExtResource("1_h3xc6")
 stream = SubResource("VoxelStreamMemory_qjeyg")
 generator = ExtResource("1_j8ivh")
 mesher = SubResource("VoxelMesherTransvoxel_3qnke")
@@ -171,7 +167,6 @@ _worldEnvironment = NodePath("..")
 _sunLight = NodePath("../../DirectionalLight3D")
 _fogDepthGradient = SubResource("Gradient_3qnke")
 _fogDepthCurve = SubResource("Curve_wtsjf")
-_sunLightGradient = SubResource("Gradient_wtsjf")
 _ambientLightCurve = SubResource("Curve_qjeyg")
 
 [node name="Rov" parent="." instance=ExtResource("5_qjeyg")]

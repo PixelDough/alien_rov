@@ -8,7 +8,6 @@ public partial class UnderwaterVolumeControl : Node
     [Export] private DirectionalLight3D _sunLight;
     [Export] private Gradient _fogDepthGradient;
     [Export] private Curve _fogDepthCurve;
-    [Export] private Gradient _sunLightGradient;
     [Export] private Curve _ambientLightCurve;
     [Export] private bool _testInEditor;
 
@@ -22,6 +21,8 @@ public partial class UnderwaterVolumeControl : Node
     {
         base._Process(delta);
 
+        RenderingServer.GlobalShaderParameterSet("fog_color", _worldEnvironment.Environment.FogLightColor);
+
         Vector3 camPos = GetViewport().GetCamera3D().GlobalPosition;
         if (Engine.IsEditorHint())
         {
@@ -29,8 +30,6 @@ public partial class UnderwaterVolumeControl : Node
             camPos = EditorInterface.Singleton.GetEditorViewport3D().GetCamera3D().Position;
         }
         float belowYPos = Mathf.Min(0f, camPos.Y);
-        if (_sunLight is not null && _sunLightGradient is not null && _fogDepthCurve is not null)
-            _sunLight.SetColor(_sunLightGradient.Sample(_fogDepthCurve.Sample(belowYPos)));
 
         if (camPos.Y >= 0.1)
         {
@@ -45,6 +44,7 @@ public partial class UnderwaterVolumeControl : Node
             _worldEnvironment.Environment.FogDepthEnd = 300;
             _worldEnvironment.Environment.VolumetricFogDensity = 0.015f;
             _worldEnvironment.Environment.FogSkyAffect = 1f;
+            _worldEnvironment.Environment.FogSunScatter = _worldEnvironment.Environment.BackgroundEnergyMultiplier;
             if (_fogDepthCurve is not null && _fogDepthGradient is not null)
             {
                 Color fogColor = _fogDepthGradient.Sample(_fogDepthCurve.Sample(belowYPos));

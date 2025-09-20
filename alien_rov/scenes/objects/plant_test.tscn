@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://crm0r15na8dr6"]
+[gd_scene load_steps=3 format=3 uid="uid://crm0r15na8dr6"]
+
+[ext_resource type="Material" uid="uid://guha8bcgoh0n" path="res://materials/base_gradient_beach.tres" id="1_2lvcc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_s75v1"]
+material = ExtResource("1_2lvcc")
 size = Vector3(0.5, 1, 0.5)
 
 [node name="PlantTest" type="Node3D"]

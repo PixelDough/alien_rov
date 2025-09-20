@@ -1,10 +1,16 @@
 shader_type spatial;
 render_mode cull_disabled;
 
+#include "res://shaders/underwater_shading.gdshaderinc"
+
 uniform sampler2D gradient_texture : source_color;
 
+varying vec3 world_pos;
+varying vec3 camera_pos;
+
 void vertex() {
-	// Called for every vertex the material is visible on.
+	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	camera_pos = (INV_VIEW_MATRIX * vec4(vec3(0.0), 1.0)).xyz;
 }
 
 void fragment() {
@@ -13,7 +19,13 @@ void fragment() {
 	ALBEDO = texture(gradient_texture, UV).rgb;
 }
 
-//void light() {
-//	// Called for every pixel for every light affecting the material.
-//	// Uncomment to replace the default light processing function with this one.
-//}
+void light() {
+	vec3 absorption_color = light_absorption(
+		ALBEDO,
+		vec4(world_pos, distance(world_pos, camera_pos)),
+		clamp(dot(NORMAL, LIGHT), 0.0, 1.0) * ATTENUATION,
+		LIGHT_COLOR,
+		LIGHT_IS_DIRECTIONAL
+	);
+    DIFFUSE_LIGHT += absorption_color;
+}
