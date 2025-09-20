@@ -1,13 +1,16 @@
-[gd_resource type="VoxelGeneratorGraph" load_steps=5 format=3 uid="uid://be35fhuasp6ri"]
+[gd_resource type="VoxelGeneratorGraph" load_steps=6 format=3 uid="uid://be35fhuasp6ri"]
 
 [ext_resource type="VoxelGraphFunction" uid="uid://cq74jn7fnrr7p" path="res://voxelgraphs/base_noise.tres" id="1_cimol"]
 [ext_resource type="VoxelGraphFunction" uid="uid://dvtfh1haukshe" path="res://voxelgraphs/base_mountains.tres" id="1_tf1ts"]
 [ext_resource type="VoxelGraphFunction" uid="uid://djvju8h2q53rl" path="res://voxelgraphs/base_terrain.tres" id="3_dxi2d"]
 [ext_resource type="VoxelGraphFunction" uid="uid://wfwudfn0grr4" path="res://voxelgraphs/base_caves.tres" id="3_q7m5t"]
 
+[sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_q7m5t"]
+period = 128.0001
+
 [resource]
 graph_data = {
-"connections": [[7, 0, 48, 0], [7, 0, 49, 0], [7, 0, 50, 0], [6, 0, 14, 1], [52, 0, 51, 0], [50, 0, 4, 0], [20, 0, 14, 0], [43, 0, 48, 1], [43, 0, 49, 1], [43, 0, 50, 1], [21, 0, 20, 1], [13, 0, 20, 0], [35, 0, 7, 0], [14, 0, 7, 1]],
+"connections": [[7, 0, 48, 0], [7, 0, 49, 0], [7, 0, 50, 0], [57, 0, 58, 0], [56, 0, 57, 0], [6, 0, 14, 1], [52, 0, 51, 0], [50, 0, 4, 0], [20, 0, 14, 0], [43, 0, 48, 1], [43, 0, 49, 1], [43, 0, 50, 1], [21, 0, 20, 1], [13, 0, 20, 0], [58, 0, 55, 0], [35, 0, 7, 0], [14, 0, 7, 1]],
 "nodes": {
 "13": {
 "_function": ExtResource("3_dxi2d"),
@@ -79,6 +82,30 @@ graph_data = {
 "gui_position": Vector2(491.42856, 857.1429),
 "type": "InputY"
 },
+"55": {
+"gui_position": Vector2(1497.1428, 342.85715),
+"type": "OutputSingleTexture"
+},
+"56": {
+"auto_connect": true,
+"gui_position": Vector2(1097.1428, 342.85715),
+"noise": SubResource("ZN_FastNoiseLite_q7m5t"),
+"type": "FastNoise2D",
+"x": 0.0,
+"y": 0.0
+},
+"57": {
+"gui_position": Vector2(1245.7142, 342.85715),
+"max0": 1.0,
+"max1": 2.0,
+"min0": -1.0,
+"min1": 0.0,
+"type": "Remap"
+},
+"58": {
+"gui_position": Vector2(1371.4286, 342.85715),
+"type": "Floor"
+},
 "6": {
 "_function": ExtResource("1_cimol"),
 "auto_connect": true,
@@ -98,3 +125,4 @@ graph_data = {
 },
 "version": 2
 }
+texture_mode = 1

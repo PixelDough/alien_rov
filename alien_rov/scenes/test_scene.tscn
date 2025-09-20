@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c4gn3dms14hvr"]
+[gd_scene load_steps=30 format=3 uid="uid://c4gn3dms14hvr"]
 
 [ext_resource type="Material" uid="uid://bckrn5k82av0v" path="res://materials/base_terrain.tres" id="1_h3xc6"]
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
@@ -13,6 +13,10 @@
 [sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_qjeyg"]
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_3qnke"]
+texturing_mode = 1
+
+[sub_resource type="VoxelFormat" id="VoxelFormat_h3xc6"]
+_data = [0, 1, 1, 0, 0, 1, 0, 0, 0]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wtsjf"]
 frequency = 0.0352
@@ -20,13 +24,13 @@ frequency = 0.0352
 [sub_resource type="VoxelInstanceGenerator" id="VoxelInstanceGenerator_rnaij"]
 emit_mode = 1
 density = 0.15
-max_slope_degrees = 45.0
-min_height = -1000.0
-max_height = -2.0
 min_scale = 0.8
 max_scale = 1.2
 vertical_alignment = 0.0
 offset_along_normal = 0.4
+max_slope_degrees = 45.0
+min_height = -1000.0
+max_height = -2.0
 noise = SubResource("FastNoiseLite_wtsjf")
 
 [sub_resource type="BoxMesh" id="BoxMesh_h3xc6"]
@@ -41,11 +45,11 @@ resource_name = "plant_test_multimesh"
 
 [sub_resource type="VoxelInstanceGenerator" id="VoxelInstanceGenerator_h3xc6"]
 density = 0.01
+max_scale = 4.0
+vertical_alignment = 0.6
 max_slope_degrees = 35.0
 min_height = 0.2
 max_height = 100.0
-max_scale = 4.0
-vertical_alignment = 0.6
 
 [sub_resource type="VoxelInstanceLibrarySceneItem" id="VoxelInstanceLibrarySceneItem_s36qc"]
 scene = ExtResource("3_rnaij")
@@ -123,9 +127,11 @@ point_count = 2
 
 [node name="VoxelLodTerrain3" type="VoxelLodTerrain" parent="."]
 material = ExtResource("1_h3xc6")
+normalmap_enabled = true
 stream = SubResource("VoxelStreamMemory_qjeyg")
 generator = ExtResource("1_j8ivh")
 mesher = SubResource("VoxelMesherTransvoxel_3qnke")
+format = SubResource("VoxelFormat_h3xc6")
 
 [node name="VoxelInstancer" type="VoxelInstancer" parent="VoxelLodTerrain3"]
 library = SubResource("VoxelInstanceLibrary_s36qc")

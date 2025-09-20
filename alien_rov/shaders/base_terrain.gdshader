@@ -3,6 +3,9 @@ shader_type spatial;
 
 #include "res://shaders/underwater_shading.gdshaderinc"
 
+uniform sampler2D u_voxel_normalmap_atlas : hint_normal;
+uniform sampler2D u_voxel_cell_lookup;
+
 varying vec3 world_pos;
 varying vec3 camera_pos;
 
