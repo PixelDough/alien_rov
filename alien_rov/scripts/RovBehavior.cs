@@ -42,7 +42,7 @@ public partial class RovBehavior : Node
         }
 
         // Strafe Movement 3D
-        if (strafeClamped.LengthSquared() > 0.1f && depthPosition < OutOfWaterThreshold + 0.1f)
+        if (strafeClamped.LengthSquared() > 0.1f && depthPosition < OutOfWaterThreshold + 0.3f)
         {
             float engineForce = 8f;
             _rigidBody3D.ApplyForce(strafeClamped * engineForce, -_rigidBody3D.Transform.Basis.X);
