@@ -148,7 +148,7 @@ void fragment() {
 	//ALBEDO = col;
 	vec3 blending = get_triplanar_blend(v_normal);
 	ALBEDO = texture_array_triplanar(texture_array, v_pos * uv_scale, blending, 0).rgb;
-	NORMAL = texture_array_triplanar(texture_array, v_pos * uv_scale, blending, 1).rgb;
+	//NORMAL = texture_array_triplanar(texture_array, v_pos * uv_scale, blending, 1).rgb;
 }
 
 void light() {
