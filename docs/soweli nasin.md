@@ -5,7 +5,7 @@ all fish ("kala") and herptiles ("akesi") are constructed using a series of trai
 - [[pattern trait]]
 - primary [[color trait]]
 - secondary [[color trait]]
-- [[descriptor trait]]
+- any number of [[descriptor trait|descriptor traits]]
 
 they also have these properties
 - size (float)
