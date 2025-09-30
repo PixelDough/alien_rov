@@ -1,6 +1,5 @@
 all fish ("kala") and herptiles ("akesi") are constructed using a series of trait slots.
 
-- [[classification trait]]
 - [[body type]]
 - [[pattern trait]]
 - primary [[color trait]]
