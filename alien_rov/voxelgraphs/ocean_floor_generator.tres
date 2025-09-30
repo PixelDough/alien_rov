@@ -1,6 +1,7 @@
-[gd_resource type="VoxelGeneratorGraph" load_steps=6 format=3 uid="uid://be35fhuasp6ri"]
+[gd_resource type="VoxelGeneratorGraph" load_steps=7 format=3 uid="uid://be35fhuasp6ri"]
 
 [ext_resource type="VoxelGraphFunction" uid="uid://cq74jn7fnrr7p" path="res://voxelgraphs/base_noise.tres" id="1_cimol"]
+[ext_resource type="VoxelGraphFunction" uid="uid://cj8r7o4msm5i0" path="res://voxelgraphs/biome_generator.tres" id="1_on2vo"]
 [ext_resource type="VoxelGraphFunction" uid="uid://dvtfh1haukshe" path="res://voxelgraphs/base_mountains.tres" id="1_tf1ts"]
 [ext_resource type="VoxelGraphFunction" uid="uid://djvju8h2q53rl" path="res://voxelgraphs/base_terrain.tres" id="3_dxi2d"]
 [ext_resource type="VoxelGraphFunction" uid="uid://wfwudfn0grr4" path="res://voxelgraphs/base_caves.tres" id="3_q7m5t"]
@@ -10,12 +11,12 @@ period = 128.0001
 
 [resource]
 graph_data = {
-"connections": [[7, 0, 48, 0], [7, 0, 49, 0], [7, 0, 50, 0], [57, 0, 58, 0], [56, 0, 57, 0], [6, 0, 14, 1], [52, 0, 51, 0], [50, 0, 4, 0], [20, 0, 14, 0], [43, 0, 48, 1], [43, 0, 49, 1], [43, 0, 50, 1], [21, 0, 20, 1], [13, 0, 20, 0], [58, 0, 55, 0], [35, 0, 7, 0], [14, 0, 7, 1]],
+"connections": [[62, 0, 59, 0], [7, 0, 50, 0], [61, 0, 62, 0], [57, 0, 58, 0], [56, 0, 57, 0], [6, 0, 14, 1], [52, 0, 51, 0], [20, 0, 14, 0], [20, 0, 62, 1], [43, 0, 50, 1], [13, 0, 20, 0], [58, 0, 55, 0], [35, 0, 20, 1], [14, 0, 7, 1]],
 "nodes": {
 "13": {
 "_function": ExtResource("3_dxi2d"),
 "auto_connect": true,
-"gui_position": Vector2(-160, 102.85714),
+"gui_position": Vector2(-171.42857, 11.428572),
 "type": "Function",
 "x": 0.0,
 "z": 0.0
@@ -25,28 +26,23 @@ graph_data = {
 "type": "Add"
 },
 "20": {
-"gui_position": Vector2(71.98703, 167.96974),
+"gui_position": Vector2(68.57143, 91.42857),
 "type": "Add"
 },
 "21": {
 "_function": ExtResource("1_tf1ts"),
 "auto_connect": true,
-"gui_position": Vector2(-171.42857, 205.71428),
+"gui_position": Vector2(-194.28572, 125.71429),
 "type": "Function",
 "x": 0.0,
 "z": 0.0
 },
 "35": {
 "auto_connect": true,
-"gui_position": Vector2(274.2857, 34.285713),
+"gui_position": Vector2(-91.42857, 240),
 "height": 0.0,
 "type": "SdfPlane",
 "y": 0.0
-},
-"4": {
-"auto_connect": true,
-"gui_position": Vector2(1188.5714, 662.8571),
-"type": "OutputSDF"
 },
 "43": {
 "_function": ExtResource("3_q7m5t"),
@@ -56,15 +52,6 @@ graph_data = {
 "x": 0.0,
 "y": 0.0,
 "z": 0.0
-},
-"48": {
-"gui_position": Vector2(891.4286, 320),
-"type": "Add"
-},
-"49": {
-"gui_position": Vector2(867.0515, 167.32573),
-"smoothness": 0.0,
-"type": "SdfSmoothUnion"
 },
 "50": {
 "gui_position": Vector2(868.5714, 537.1429),
@@ -106,15 +93,34 @@ graph_data = {
 "gui_position": Vector2(1371.4286, 342.85715),
 "type": "Floor"
 },
+"59": {
+"auto_connect": true,
+"gui_position": Vector2(605.7143, 91.42857),
+"type": "OutputSDF"
+},
 "6": {
 "_function": ExtResource("1_cimol"),
 "auto_connect": true,
-"gui_position": Vector2(-114.28571, 320),
+"gui_position": Vector2(-125.71429, 354.2857),
 "type": "Function",
 "x": 0.0,
 "z": 0.0
 },
+"61": {
+"_function": ExtResource("1_on2vo"),
+"auto_connect": true,
+"gui_position": Vector2(-34.285713, -125.71429),
+"type": "Function",
+"x": 0.0,
+"y": 0.0,
+"z": 0.0
+},
+"62": {
+"gui_position": Vector2(265.69583, -31.258333),
+"type": "Add"
+},
 "7": {
+"a": 0.0,
 "gui_position": Vector2(468.57144, 182.85715),
 "type": "Add"
 },

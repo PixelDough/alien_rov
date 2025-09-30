@@ -3,6 +3,7 @@ shader_type spatial;
 
 #include "res://shaders/underwater_shading.gdshaderinc"
 
+uniform vec3 tint : source_color = vec3(1,1,1);
 uniform sampler2DArray texture_array : source_color;
 uniform sampler2D u_voxel_normalmap_atlas : hint_normal;
 uniform sampler2D u_voxel_cell_lookup;
@@ -147,7 +148,7 @@ void fragment() {
 	
 	//ALBEDO = col;
 	vec3 blending = get_triplanar_blend(v_normal);
-	ALBEDO = texture_array_triplanar(texture_array, v_pos * uv_scale, blending, 0).rgb;
+	ALBEDO = tint.rgb * texture_array_triplanar(texture_array, v_pos * uv_scale, blending, 0).rgb;
 	//NORMAL = texture_array_triplanar(texture_array, v_pos * uv_scale, blending, 1).rgb;
 }
 
