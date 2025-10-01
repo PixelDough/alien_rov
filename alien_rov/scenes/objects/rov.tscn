@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cft8pea2mof2f"]
+[gd_scene load_steps=6 format=3 uid="uid://cft8pea2mof2f"]
 
 [ext_resource type="Script" uid="uid://wg7mgo0f51pq" path="res://scripts/RovBehavior.cs" id="1_orfdf"]
 [ext_resource type="Script" uid="uid://c35fjywji0nrn" path="res://scripts/PlayerController.cs" id="2_ds2eu"]
+[ext_resource type="Script" uid="uid://dngauevyp58jo" path="res://scripts/FlashlightToggle.cs" id="3_d4ijh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rynrb"]
 size = Vector3(1, 1, 1.5)
@@ -34,18 +35,7 @@ _camera3D = NodePath("../Camera3D")
 script = ExtResource("2_ds2eu")
 _rovBehavior = NodePath("../RovBehavior")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, 0, 0, 0.2739349)
-visible = false
-light_color = Color(0.60784316, 1, 1, 1)
-light_energy = 2.0
-shadow_enabled = true
-shadow_bias = 0.1
-spot_range = 200.0
-spot_attenuation = 0.5
-spot_angle_attenuation = 0.5358868
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+[node name="Flashlight" type="SpotLight3D" parent="."]
 transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, 0, 0, 0.2739349)
 light_energy = 2.5
 shadow_enabled = true
@@ -53,3 +43,7 @@ shadow_bias = 0.1
 spot_range = 200.0
 spot_attenuation = 0.4
 spot_angle_attenuation = 0.5358868
+
+[node name="Flashlight Toggle" type="Node" parent="." node_paths=PackedStringArray("_light")]
+script = ExtResource("3_d4ijh")
+_light = NodePath("../Flashlight")
