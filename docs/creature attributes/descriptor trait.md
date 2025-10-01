@@ -4,9 +4,6 @@ aliases:
 ---
 defines a descriptive trait about the creature
 
-every one of these terms has a generic "part" it adds to the creature, based on the word. however, some combinations of terms can create a *specific* creature, with it's own custom model and behavior.
+every one of these terms has an associated "cosmetic" which is added to a specific slot on a creature's model if the creature has this trait as an explicitly defined additional property.
 
-examples of generic traits:
-- "suwi" adds axolotl frills to the creature's cheeks
-- "utala" puts a sword in one of their fins
-- "noka" adds legs to the creature
+generally, these can only come from creatures that have them as implicit traits (for example: sword from a creature with a swordfish body). however, some have other conditions in which they can appear, either a totally random chance per naturally spawned creature, or as a random chance from breeding.
