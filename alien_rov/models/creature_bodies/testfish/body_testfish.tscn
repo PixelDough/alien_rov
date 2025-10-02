@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvvtbj3bstguw"]
+[gd_scene load_steps=5 format=3 uid="uid://dvvtbj3bstguw"]
+
+[ext_resource type="Script" uid="uid://dxh8ucurcf2dw" path="res://scripts/creaturegen/CreatureBody.cs" id="1_nvcnu"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_m2b6i"]
 radius = 0.1
@@ -10,7 +12,9 @@ size = Vector3(0.03, 0.1, 0.1)
 [sub_resource type="BoxMesh" id="BoxMesh_lkcmo"]
 size = Vector3(0.03, 0.05, 0.05)
 
-[node name="BodyTestfish" type="Node3D"]
+[node name="BodyTestfish" type="Node3D" node_paths=PackedStringArray("AnimationPlayer")]
+script = ExtResource("1_nvcnu")
+AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_m2b6i")
@@ -30,3 +34,5 @@ mesh = SubResource("BoxMesh_lkcmo")
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.4999998, -0.74999994, -0.43301266, 0, 0.4999999, -0.8660254, 0.86602527, -0.43301257, -0.24999993, -0.096, -0.019, -0.003)
 mesh = SubResource("BoxMesh_lkcmo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

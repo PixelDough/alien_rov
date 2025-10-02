@@ -5,4 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>alienrov</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="scripts\creaturegen\components\" />
+  </ItemGroup>
 </Project>
