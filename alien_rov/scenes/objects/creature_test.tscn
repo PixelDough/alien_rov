@@ -18,5 +18,5 @@ _bodyTypeComponent = NodePath("../BodyTypeComponent")
 
 [node name="CreatureBodyAnimator" type="Node" parent="." node_paths=PackedStringArray("VisualsSpawner")]
 script = ExtResource("3_eti01")
-VisualsSpawner = NodePath("")
+VisualsSpawner = NodePath("../BodyTypeVisualsSpawner")
 metadata/_custom_type_script = "uid://cd3k5o61t3qb5"
