@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DescriptorTrait" load_steps=2 format=3 uid="uid://gtjvy6gv3272"]
+
+[ext_resource type="Script" uid="uid://fbvpgffcilwj" path="res://scripts/creaturegen/resources/DescriptorTrait.cs" id="1_5qh8l"]
+
+[resource]
+script = ExtResource("1_5qh8l")
+Name = "pi sijelo utala"
+metadata/_custom_type_script = "uid://fbvpgffcilwj"

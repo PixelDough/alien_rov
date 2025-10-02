@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BodyType" load_steps=3 format=3 uid="uid://dx3e50p3t4rtw"]
+
+[ext_resource type="Script" uid="uid://bcv14w31itm0f" path="res://scripts/creaturegen/resources/BodyType.cs" id="1_lvheo"]
+[ext_resource type="Resource" uid="uid://gtjvy6gv3272" path="res://resources/creaturegen/descriptortraits/trait_desc_sijelo_utala.tres" id="1_ok0pi"]
+
+[resource]
+script = ExtResource("1_lvheo")
+DescriptorTrait = ExtResource("1_ok0pi")
+CustomNameEnabled = true
+CustomName = "pi sijelo utala"
+metadata/_custom_type_script = "uid://bcv14w31itm0f"

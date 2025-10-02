@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c4gn3dms14hvr"]
+[gd_scene load_steps=31 format=3 uid="uid://c4gn3dms14hvr"]
 
 [ext_resource type="Material" uid="uid://bckrn5k82av0v" path="res://materials/base_terrain.tres" id="1_h3xc6"]
 [ext_resource type="VoxelGeneratorGraph" uid="uid://be35fhuasp6ri" path="res://voxelgraphs/ocean_floor_generator.tres" id="1_j8ivh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://njnwynno7rhl" path="res://scenes/objects/palm_trees/palmtree_1.tscn" id="3_rnaij"]
 [ext_resource type="Script" uid="uid://qvaibrlxbmth" path="res://scripts/UnderwaterVolumeControl.cs" id="4_7ddre"]
 [ext_resource type="PackedScene" uid="uid://cft8pea2mof2f" path="res://scenes/objects/rov.tscn" id="5_qjeyg"]
+[ext_resource type="PackedScene" uid="uid://bysika5pogcf7" path="res://scenes/objects/creature_test.tscn" id="10_s36qc"]
 
 [sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_qjeyg"]
 
@@ -181,3 +182,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.7042, -10.634965, 26.4438
 [node name="VoxelViewer" type="VoxelViewer" parent="Rov"]
 view_distance = 20
 enabled_in_editor = true
+
+[node name="Creature Test" parent="." instance=ExtResource("10_s36qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.099506, 0)

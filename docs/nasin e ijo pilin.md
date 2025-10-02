@@ -1,3 +1,5 @@
+Method of Living Things
+
 all fish ("kala") and herptiles ("akesi") are constructed using a series of trait slots.
 
 - [[body type]]

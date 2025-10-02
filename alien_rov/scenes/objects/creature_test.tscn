@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bysika5pogcf7"]
+
+[ext_resource type="Script" uid="uid://ehys5uivh8ql" path="res://scripts/creaturegen/BodyTypeComponent.cs" id="1_7ndx5"]
+[ext_resource type="Resource" uid="uid://b52uclib8ktn2" path="res://resources/creaturegen/bodytypes/body_basicfish.tres" id="2_7ndx5"]
+
+[node name="Creature Test" type="Node3D"]
+
+[node name="BodyTypeComponent" type="Node" parent="."]
+script = ExtResource("1_7ndx5")
+BodyType = ExtResource("2_7ndx5")
+metadata/_custom_type_script = "uid://ehys5uivh8ql"
