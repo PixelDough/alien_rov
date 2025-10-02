@@ -12,12 +12,11 @@ script = ExtResource("1_7ndx5")
 BodyType = ExtResource("2_7ndx5")
 metadata/_custom_type_script = "uid://ehys5uivh8ql"
 
-[node name="BodyTypeVisualsSpawner" type="Node3D" parent="."]
+[node name="BodyTypeVisualsSpawner" type="Node3D" parent="." node_paths=PackedStringArray("_bodyTypeComponent")]
 script = ExtResource("4_sp0jf")
+_bodyTypeComponent = NodePath("../BodyTypeComponent")
 
 [node name="CreatureBodyAnimator" type="Node" parent="." node_paths=PackedStringArray("VisualsSpawner")]
 script = ExtResource("3_eti01")
 VisualsSpawner = NodePath("")
 metadata/_custom_type_script = "uid://cd3k5o61t3qb5"
-
-[connection signal="BodyTypeChanged" from="BodyTypeComponent" to="BodyTypeVisualsSpawner" method="OnBodyTypeChanged"]
